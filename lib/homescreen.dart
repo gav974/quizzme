@@ -12,7 +12,17 @@ class _MyHomePageState extends State<MyHomePage> {
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
-  var question= <String>[];
+  var question= <String>["La durée d'un jour a toujours Ã©tÃ© de 24 heures",
+    "La dengue est une maladie transmise par la piqure d'une tique.",
+    "Le premier Etre vivant à aller dans l'Espace est la chienne Laika, envoyée par les Américains.",
+    "L'est de l'Espagne est bordée par l'Océan Atlantique.",
+    "Quand la chèvre crie, elle baguette.",
+    "La soeur de mon frère, est aussi ma soeur.",
+    "La durée d'un jour a toujours été de 24 heures.",
+    "La tomate est un légume.",
+    'Le requin-nourrice aspire ses proies.',
+    'L\'alphabet arabe contient 26 lettres.',
+  ];
 
   void addItems (item){
     setState(() {
