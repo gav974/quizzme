@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzme/End_quizz_vue.dart';
 
 import 'package:quizzme/homescreen.dart';
 
@@ -13,9 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
+    //  initialRoute: '/',
+      routes: {
+        '/': (context) => const MyHomePage(),
+        '/second': (context) => const pageQuizz()
+      },
 
-      home: MyHomePage(),
+      //home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

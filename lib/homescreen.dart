@@ -14,6 +14,10 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final answerTrue= "vrai";
+  final answerFalse= "faux";
+
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
@@ -32,20 +36,37 @@ class _MyHomePageState extends State<MyHomePage> {
     "L'alphabet arabe contient 26 lettres.",
   ];
 
+  final List answer =<String>[
+    'faux',
+    'faux',
+    'faux',
+    'faux',
+    'faux',
+    'vrai',
+    'faux',
+    'faux',
+    'vrai',
+    'faux'
+  ];
 
 
-  void addItems (item){
+
+  void addItems (response){
+var item ;
     setState(() {
-      final lengthOfQuestion = question.length-1;
-      if(resultIcone.length <=19 || question.length < lengthOfQuestion) {
-      print (lengthOfQuestion);
-
+      if( increment < question.length - 1 ) {
+        if (answer[increment]== response){
+           item = checkIcon;
+        }else{
+           item = closeIcon;
+        }
         resultIcone.add(item);
       increment++;
-      print (increment);
-    } else{
+
+    } else {
         resultIcone = <Icon>[];
-        increment --;
+        increment = 0 ;
+        Navigator.pushNamed(context, '/second');
 
       }
       }
@@ -87,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onSurface: Colors.white,
                   ),
                   onPressed: (){
-                   addItems(checkIcon);
+                   addItems(answerTrue);
                     },
                   child: const Text("Vrai",
                     style:TextStyle(
@@ -107,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onSurface: Colors.white,
                   ),
                   onPressed: (){
-                    addItems(closeIcon);
+                    addItems(answerFalse);
                   },
                   child: const Text("Faux",style:TextStyle(
                       color:Colors.white70,
