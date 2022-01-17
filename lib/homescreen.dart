@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -12,22 +9,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<String> resultIcone =[];
 
 
-  getMethod() async{
-    var strUrl= Uri.parse('http://10.0.2.2/Api_flutter/Extract_question.php');
-    var res = await http.get(strUrl,headers:{"Accept":"application/json"});
-    var responsBody = jsonDecode(res.body);
-    print(responsBody);
-    return responsBody;
-  }
 
   @override
   Widget build(BuildContext context) {
-
-    var mediaHeigth = MediaQuery.of(context).size.height;
-    var mediaWidth = MediaQuery.of(context).size.width;
-
 
     return Scaffold(
 
