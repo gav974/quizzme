@@ -7,12 +7,20 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+//class constructQuestion {
+//  String ;
+//  bool ;
+//  constructQuestion(this.String)}
+
 
 class _MyHomePageState extends State<MyHomePage> {
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
-  var question= <String>["La durée d'un jour a toujours Ã©tÃ© de 24 heures",
+  var increment=0 ;
+
+  final List question = <String>[
+    "La durée d'un jour a toujours été de 24 heures",
     "La dengue est une maladie transmise par la piqure d'une tique.",
     "Le premier Etre vivant à aller dans l'Espace est la chienne Laika, envoyée par les Américains.",
     "L'est de l'Espagne est bordée par l'Océan Atlantique.",
@@ -20,20 +28,31 @@ class _MyHomePageState extends State<MyHomePage> {
     "La soeur de mon frère, est aussi ma soeur.",
     "La durée d'un jour a toujours été de 24 heures.",
     "La tomate est un légume.",
-    'Le requin-nourrice aspire ses proies.',
-    'L\'alphabet arabe contient 26 lettres.',
+    "Le requin-nourrice aspire ses proies.",
+    "L'alphabet arabe contient 26 lettres.",
   ];
+
+
 
   void addItems (item){
     setState(() {
-      if(resultIcone.length <=19){
-      resultIcone.add(item);
+      final lengthOfQuestion = question.length-1;
+      if(resultIcone.length <=19 || question.length < lengthOfQuestion) {
+      print (lengthOfQuestion);
+
+        resultIcone.add(item);
+      increment++;
+      print (increment);
     } else{
         resultIcone = <Icon>[];
+        increment --;
+
       }
       }
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Expanded(
+             Expanded(
               flex: 5,
               child:Padding(
                 padding: EdgeInsets.symmetric(vertical:15.0, horizontal: 15.00),
                 child: Center(
-                  child: Text('Question',
+                  child: Text(question.elementAt(increment),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25
