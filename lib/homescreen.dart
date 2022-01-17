@@ -12,11 +12,16 @@ class _MyHomePageState extends State<MyHomePage> {
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
+  var question= <String>[];
 
   void addItems (item){
     setState(() {
+      if(resultIcone.length <=19){
       resultIcone.add(item);
-    }
+    } else{
+        resultIcone = <Icon>[];
+      }
+      }
     );
   }
 
@@ -66,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 15, 15, 15),
+                padding: const EdgeInsets.symmetric(vertical:15.0 ,horizontal: 15.0),
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.red,
