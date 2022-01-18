@@ -19,15 +19,26 @@ var _increment = 0 ; //équivaut à QuestionNumber
  Question(q:"L'alphabet arabe contient 26 lettres.",a:false),
   ];
 
-
+void reset(){
+ _increment = 0;
+ print('valeur avec reset $_increment');
+}
 
  void finishIncrement() {
-  if (_increment >= _question.length - 1) finishQuizz = "true";
- }
+  if (_increment >= _question.length - 1) {
+   finishQuizz = "true";
 
+
+   }
+}
 
  void nextQuestion() {
-  if (_increment < _question.length - 1) _increment++;}
+  if (_increment < _question.length - 1) {
+   _increment++;
+   print(' avec nextQuestion $finishQuizz');
+   print('avec next Question $_increment');
+  }
+ }
 
  String getQuestionText() {
   return _question[_increment].question;

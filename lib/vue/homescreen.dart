@@ -19,19 +19,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var resultIcone = <Icon>[];
 
-  void addItems (response){// ajout des icones pour le score
+  void addItems (response){                        //addItems  <==> checkAnswer
 setState(() {
-  if(qB.getFinish() == "true"){ //traite le depassement de l'index
-    __onAlertButtonPressed(context);
-  }
-  qB.nextQuestion();
-  qB.finishIncrement();
+  qB.nextQuestion();                                //rajoute +1
+  qB.finishIncrement();                            //vérifie la valeur de l'index
+  if(qB.getFinish() == "true"){                   //traite le dépassement de l'index
+    resultIcone = <Icon>[];
+    qB.reset();                                   //mise a zero de l'incrément et de la liste d'icones
+    __onAlertButtonPressed(context);              //active une alerte
 
-  if (qB.getAnswerText() == response) { //verification de la reponse à la question
-    resultIcone.add(checkIcon); //insertion de l'icone en fonction des réponses
+  }
+
+
+  if (qB.getAnswerText() == response) {           //vérification de la réponse à la question
+    resultIcone.add(checkIcon);                   //insertion de l'icone en fonction des réponses
   } else {
-    resultIcone.add(closeIcon); //insertion de l'icone en fonction des réponses
-  }});}
+    resultIcone.add(closeIcon);
+  }
+
+
+}
+);}
 
 
 
@@ -111,16 +119,25 @@ setState(() {
 __onAlertButtonPressed(context) {
   Alert(
     context: context,
-    type: AlertType.error,
+    type: AlertType.warning,
     title: "Fin du questionnaire",
-    desc: "recommencer ",
+    desc: "On recommence ",
     buttons: [
       DialogButton(
+        radius: BorderRadius.all(Radius.circular(30.0)),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.blue.shade700,
+            Colors.blueAccent.shade400,
+          ],
+        ),
         child: Text(
           "Retour",
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => Navigator.pushNamed(context, '/'),
         width: 120,
       )
     ],
