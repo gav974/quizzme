@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzme/End_quizz_vue.dart';
+import 'package:quizzme/vue/End_quizz_vue.dart';
 
-import 'package:quizzme/homescreen.dart';
+import 'package:quizzme/vue/homescreen.dart';
 
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-    //  initialRoute: '/',
+     initialRoute: '/',
       routes: {
         '/': (context) => const MyHomePage(),
         '/second': (context) => const pageQuizz()

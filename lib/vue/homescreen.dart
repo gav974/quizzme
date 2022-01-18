@@ -1,6 +1,11 @@
 
 import 'package:flutter/material.dart';
 
+class Constant {
+  static int score = 0 ;
+
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -17,20 +22,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final answerTrue= "vrai";
   final answerFalse= "faux";
+  var increment= 0 ; //équivaut à QuestionNumber
 
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
-  var increment=0 ;
+
 
   final List question = <String>[
-    "La durée d'un jour a toujours été de 24 heures",
+    "La durée d'un jour est exactement de 24 heures",
     "La dengue est une maladie transmise par la piqure d'une tique.",
-    "Le premier Etre vivant à aller dans l'Espace est la chienne Laika, envoyée par les Américains.",
-    "L'est de l'Espagne est bordée par l'Océan Atlantique.",
+    "Le premier Etre vivant à partir dans l'Espace est la chienne Laika, envoyée par les Américains.",
+    "L' Est de l'Espagne est bordée par l'Océan Atlantique.",
     "Quand la chèvre crie, elle baguette.",
     "La soeur de mon frère, est aussi ma soeur.",
-    "La durée d'un jour a toujours été de 24 heures.",
+    "Etienne joue à Counter strike",
     "La tomate est un légume.",
     "Le requin-nourrice aspire ses proies.",
     "L'alphabet arabe contient 26 lettres.",
@@ -51,19 +57,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-  void addItems (response){
+
+  void addItems (response){// ajout des icones pour le score
 var item ;
-    setState(() {
+setState(() {
       if( increment < question.length - 1 ) {
         if (answer[increment]== response){
            item = checkIcon;
-        }else{
+           Constant.score++;//nombre de bonnes reponses
+        }else {
            item = closeIcon;
         }
         resultIcone.add(item);
       increment++;
 
-    } else {
+    } else {//reinitialise toutes les listes et les incréments et redirecion sur une nouvelle page
         resultIcone = <Icon>[];
         increment = 0 ;
         Navigator.pushNamed(context, '/second');
@@ -130,9 +138,10 @@ var item ;
                   onPressed: (){
                     addItems(answerFalse);
                   },
-                  child: const Text("Faux",style:TextStyle(
-                      color:Colors.white70,
-                      fontSize:20
+                  child: const Text("Faux",
+                    style:TextStyle(
+                        color:Colors.white70,
+                        fontSize:20
                     ),
                   ),
                 ),
