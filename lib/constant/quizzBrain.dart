@@ -1,7 +1,7 @@
 
 
 class QuizzBrain{
-  List question = <String>[
+   List _question = <String>[
     "La durée d'un jour est exactement de 24 heures",
     "La dengue est une maladie transmise par la piqure d'une tique.",
     "Le premier Etre vivant à partir dans l'Espace est la chienne Laika, envoyée par les Américains.",
