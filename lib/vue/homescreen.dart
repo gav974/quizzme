@@ -1,13 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:quizzme/constant/quizzBrain.dart';
+import 'package:quizzme/controller/QuizzBrain.dart';
 
-class Questions {
-  String questions;
-  bool reponse;
-  Questions(this.questions, this.reponse);
-}
-
+QuizzBrain quizzBrain = QuizzBrain();
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -16,31 +11,15 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
 
   final answerTrue= "vrai";
   final answerFalse= "faux";
-  var increment= 0 ; //équivaut à QuestionNumber
 
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
   var resultIcone = <Icon>[];
 
-
-
-  final List answer =<String>[
-    'faux',
-    'faux',
-    'faux',
-    'faux',
-    'faux',
-    'vrai',
-    'faux',
-    'faux',
-    'vrai',
-    'faux'
-  ];
 
   void addItems (response){// ajout des icones pour le score
 Icon item ;
@@ -79,7 +58,7 @@ setState(() {
               child:Padding(
                 padding: EdgeInsets.symmetric(vertical:15.0, horizontal: 15.00),
                 child: Center(
-                  child: Text(QuizzBrain().question.elementAt(increment),
+                  child: Text(QuizzBrain().question.[increment],
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25
