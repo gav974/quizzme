@@ -12,10 +12,6 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-//class constructQuestion {
-//  String ;
-//  bool ;
-//  constructQuestion(this.String)}
 
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -55,11 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'faux'
   ];
 
-
-
-
   void addItems (response){// ajout des icones pour le score
-var item ;
+Icon item ;
 setState(() {
       if( increment < question.length - 1 ) {
         if (answer[increment]== response){
@@ -80,8 +73,6 @@ setState(() {
       }
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
