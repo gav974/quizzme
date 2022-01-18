@@ -2,8 +2,9 @@ import 'Question.dart';
 
 
 class QuizzBrain{
+ String finishQuizz = "false";
 
- var _increment= 0 ; //équivaut à QuestionNumber
+var _increment = 0 ; //équivaut à QuestionNumber
 
  final List<Question> _question = [
   Question(q:"La durée d'un jour est exactement de 24 heures",a:false),
@@ -20,20 +21,24 @@ class QuizzBrain{
 
 
 
+ void finishIncrement() {
+  if (_increment >= _question.length - 1) finishQuizz = "true";
+ }
+
 
  void nextQuestion() {
-  if (_increment < _question.length - 1) {
-   _increment++;
-  }
- }
+  if (_increment < _question.length - 1) _increment++;}
 
  String getQuestionText() {
   return _question[_increment].question;
-
  }
 
  bool getAnswerText() {
   return _question[_increment].answer;
  }
+ String getFinish() {
+  return finishQuizz;
+ }
+
 
 }

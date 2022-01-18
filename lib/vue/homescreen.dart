@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quizzme/controller/QuizzBrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizzBrain qB = QuizzBrain();
 
@@ -20,12 +21,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void addItems (response){// ajout des icones pour le score
 setState(() {
-  qB.nextQuestion(); //traitement  l'increment afin de ne pas depasser l'index de la liste
+  if(qB.getFinish() == "true"){ //traite le depassement de l'index
+    __onAlertButtonPressed(context);
+  }
+  qB.nextQuestion();
+  qB.finishIncrement();
+
   if (qB.getAnswerText() == response) { //verification de la reponse à la question
     resultIcone.add(checkIcon); //insertion de l'icone en fonction des réponses
   } else {
     resultIcone.add(closeIcon); //insertion de l'icone en fonction des réponses
   }});}
+
 
 
   @override
@@ -101,4 +108,21 @@ setState(() {
   }
 }
 
-
+__onAlertButtonPressed(context) {
+  Alert(
+    context: context,
+    type: AlertType.error,
+    title: "Fin du questionnaire",
+    desc: "recommencer ",
+    buttons: [
+      DialogButton(
+        child: Text(
+          "Retour",
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        onPressed: () => Navigator.pop(context),
+        width: 120,
+      )
+    ],
+  ).show();
+}
