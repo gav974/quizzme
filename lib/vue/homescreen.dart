@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizzme/controller/QuizzBrain.dart';
 
-QuizzBrain quizzBrain = QuizzBrain();
+QuizzBrain qB = QuizzBrain();
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -13,40 +13,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final answerTrue= "vrai";
-  final answerFalse= "faux";
-
   final Icon checkIcon = const Icon(Icons.check,color:Colors.green);
   final Icon closeIcon = const Icon(Icons.close,color:Colors.red);
+
   var resultIcone = <Icon>[];
 
-
   void addItems (response){// ajout des icones pour le score
-Icon item ;
 setState(() {
-      if( increment < QuizzBrain().question.length - 1 ) { //verification que l'increment de ne depasse pas l'index de la liste
-        if (answer[increment]== response){ //verification de la reponse à la question
-           item = checkIcon;
+  qB.nextQuestion(); //traitement  l'increment afin de ne pas depasser l'index de la liste
+  if (qB.getAnswerText() == response) { //verification de la reponse à la question
+    resultIcone.add(checkIcon); //insertion de l'icone en fonction des réponses
+  } else {
+    resultIcone.add(closeIcon); //insertion de l'icone en fonction des réponses
+  }});}
 
-        }else {
-           item = closeIcon;
-        }
-        resultIcone.add(item); //insertion de l'icone en fonction des réponses
-      increment++;
-
-    } else {//reinitialise toutes les listes et les incréments et redirecion sur une nouvelle page
-        resultIcone = <Icon>[];
-        increment = 0 ;
-        Navigator.pushNamed(context, '/second');
-
-      }
-      }
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
     backgroundColor: Colors.grey.shade900,
       body: SafeArea(
@@ -58,7 +41,7 @@ setState(() {
               child:Padding(
                 padding: EdgeInsets.symmetric(vertical:15.0, horizontal: 15.00),
                 child: Center(
-                  child: Text(QuizzBrain().question.[increment],
+                  child: Text(qB.getQuestionText(),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25
@@ -77,7 +60,7 @@ setState(() {
                     onSurface: Colors.white,
                   ),
                   onPressed: (){
-                   addItems(answerTrue);
+                   addItems(true);
                     },
                   child: const Text("Vrai",
                     style:TextStyle(
@@ -97,7 +80,7 @@ setState(() {
                     onSurface: Colors.white,
                   ),
                   onPressed: (){
-                    addItems(answerFalse);
+                    addItems(false);
                   },
                   child: const Text("Faux",
                     style:TextStyle(
