@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:quizzme/constant/quizzBrain.dart';
 
-class Constant {
-  static int score = 0 ;
-
+class Questions {
+  String questions;
+  bool reponse;
+  Questions(this.questions, this.reponse);
 }
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -25,18 +28,6 @@ class _MyHomePageState extends State<MyHomePage> {
   var resultIcone = <Icon>[];
 
 
-  final List question = <String>[
-    "La durée d'un jour est exactement de 24 heures",
-    "La dengue est une maladie transmise par la piqure d'une tique.",
-    "Le premier Etre vivant à partir dans l'Espace est la chienne Laika, envoyée par les Américains.",
-    "L' Est de l'Espagne est bordée par l'Océan Atlantique.",
-    "Quand la chèvre crie, elle baguette.",
-    "La soeur de mon frère, est aussi ma soeur.",
-    "Etienne joue à Counter strike",
-    "La tomate est un légume.",
-    "Le requin-nourrice aspire ses proies.",
-    "L'alphabet arabe contient 26 lettres.",
-  ];
 
   final List answer =<String>[
     'faux',
@@ -54,14 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void addItems (response){// ajout des icones pour le score
 Icon item ;
 setState(() {
-      if( increment < question.length - 1 ) {
-        if (answer[increment]== response){
+      if( increment < QuizzBrain().question.length - 1 ) { //verification que l'increment de ne depasse pas l'index de la liste
+        if (answer[increment]== response){ //verification de la reponse à la question
            item = checkIcon;
-           Constant.score++;//nombre de bonnes reponses
+
         }else {
            item = closeIcon;
         }
-        resultIcone.add(item);
+        resultIcone.add(item); //insertion de l'icone en fonction des réponses
       increment++;
 
     } else {//reinitialise toutes les listes et les incréments et redirecion sur une nouvelle page
@@ -88,7 +79,7 @@ setState(() {
               child:Padding(
                 padding: EdgeInsets.symmetric(vertical:15.0, horizontal: 15.00),
                 child: Center(
-                  child: Text(question.elementAt(increment),
+                  child: Text(QuizzBrain().question.elementAt(increment),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25
